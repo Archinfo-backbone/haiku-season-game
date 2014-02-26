@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+  <html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- Feuilles de style -->
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <!-- Script Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.6/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+    <style>
+    #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+    </style>
+    <title>Haïku Season Game</title>
+  </head>
+  <body>
+
+    <!-- DEBUT HEADER -->
+    <header>
+    
+      <h1>Haïku Season Game</h1>
+
+      <section id="intro">
+      Bonjour petit samouraï, bienvenue dans le Haïku Season Game, afin de devenir un grand haïkiste
+      donneur de high-kick poétique, ce jeu va te permettre de réviser tes haïkus préférés. La règle
+      est simple, une strophe de Haiku te sera proposée, seulement il manquera un des trois vers, à toi de
+      trouver le bon vers correspondant en le choisissant dans les trois vers proposés sur la gauche.
+      </section>
+
+    </header>
+    <!-- FIN HEADER -->
+    <!-- DEBUT CONTENEUR -->
+    <section id="jeu">
+      <h2>Trouves le haïku manquants puis médites comme un chat</h2>
+      <nav>
+          <a href="#">Printemps</a>  |
+          <a href="#">Été</a>  |
+          <a href="#">Automne</a> |
+          <a href="#">Hiver</a> |
+      </nav>
+
+
+      <section id="validation">
+
+
+        <article id="jouer">
+
+           <?php include("ete_requette.php"); ?>
+           <br/>
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+           <?php include("rand_requette.php"); ?>
+        </article><!-- FIN jouer-->
+
+        <article id="proposer">
+
+        </article> <!-- FIN proposer-->
+
+        <form>
+          <input type='reset' name='raz' value="Annuler" /><br/>
+          <input type='submit' name='validation' value="Valider" /><br/>
+        </form>
+
+    </section> <!-- FIN Validation-->
+
+    </section> <!-- FIN Jeu -->
+
+    <footer>
+    <p>Made with HTML5&CSS3, Backbone.js and JQuery. Laetitia Pot, Karim Ennassiri, Loup Cellard. INF04 Master Archinfo.</p>
+    </footer>
+
+  </body>
+  <!-- FIN BODY-->
+  
+    <script>
+	function allowDrop(ev)
+{
+ev.preventDefault();
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+}
+	
+    </script>
+	
+  </html>
